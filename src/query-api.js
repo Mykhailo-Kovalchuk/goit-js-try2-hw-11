@@ -1,6 +1,7 @@
 import axios from 'axios';
-
-
+import Notiflix from 'notiflix';
+// const API_KEY = '40581728-038ade9540e93c29e31f494aa';
+// axios.defaults.headers.common['x-api-key'] = API_KEY;
 
 
 // функція-кур`єр яка біжить і робить запит на сервер.
@@ -11,14 +12,17 @@ export function fetchInfo (userQuery, pageLoad) {
     const URL = `${BASE_URL}?key=${API_KEY}&q=${userQuery}${PARAMS}`;
     
     console.log(URL)
-    
-    return fetch(URL).then(res => res.json())
-    .then(data => {
-        console.log(data);
-        console.log(data.totalHits)
-        console.log(data.hits);
-    return data})
-    .catch(err => console.log(`error: ${err}`));
+  
+    return axios.get(URL)                        // fetch(URL).then(res => res.json())
+    .then(resp => {
+        console.log(resp.data);
+        console.log(resp.data.totalHits)
+        console.log(resp.data.hits);
+    return resp.data})
+    .catch(err => {
+      Notiflix.Notify.failure("Пропало всьо.");// тренування
+
+      console.log(`error: ${err}`)});
     }
     
     
