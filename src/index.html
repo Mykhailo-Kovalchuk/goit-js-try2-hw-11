@@ -6,15 +6,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slim-select/dist/slimselect.css">
     <link rel="stylesheet" type="text/css" href="./styles/styles.css">    <title>Homework 11</title>
   </head>
-  <br>
     <form class="search-form" id="search-form">
       <input
         type="text"
         name="searchQuery"
         autocomplete="off"
         placeholder="Search images..."
+        class="input-place"
       />
-      <button type="submit">Search</button>
+      <button type="submit" class="btn-search">
+       
+        <svg class="icon-search">
+          <use href="./svg/symbol-defs.svg#icon-search"></use>
+        </svg>
+        </button>
     </form>
 
     <div class="gallery">

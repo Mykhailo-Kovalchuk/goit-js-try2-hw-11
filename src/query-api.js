@@ -8,10 +8,10 @@ import Notiflix from 'notiflix';
 export function fetchInfo (userQuery, pageLoad) { 
     const BASE_URL = "https://pixabay.com/api/";
     const API_KEY = '40581728-038ade9540e93c29e31f494aa';
-    const PARAMS = `&image_type=photo&orientation=horizontal&safesearch=true&page=${pageLoad}&per_page=10`
+    const PARAMS = `&image_type=photo&orientation=horizontal&safesearch=true&page=${pageLoad}&per_page=40`
     const URL = `${BASE_URL}?key=${API_KEY}&q=${userQuery}${PARAMS}`;
     
-    console.log(URL)
+    // console.log(URL)
   
     return axios.get(URL)                        // fetch(URL).then(res => res.json())
     .then(resp => {
@@ -20,7 +20,7 @@ export function fetchInfo (userQuery, pageLoad) {
         console.log(resp.data.hits);
     return resp.data})
     .catch(err => {
-      Notiflix.Notify.failure("Пропало всьо.");// тренування
+    Notiflix.Notify.failure("От халепа! Щось пішло не так!");// тренування
 
       console.log(`error: ${err}`)});
     }
@@ -31,19 +31,23 @@ export function fetchInfo (userQuery, pageLoad) {
     export  function renderElement ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) {
         return `
         <div class="photo-card">
-        <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+        <img src="${webformatURL}" alt="${tags}" loading="lazy" class="image"/>
         <div class="info">
           <p class="info-item">
-            <b>Likes</b> <br> ${likes}
+            <b>Likes</b> 
+               ${likes}
           </p>
           <p class="info-item">
-            <b>Views</b><br> ${views}
+            <b>Views</b>
+               ${views}
           </p>
           <p class="info-item">
-            <b>Comments</b> <br> ${comments}
+            <b>Comments</b> 
+               ${comments}
           </p>
           <p class="info-item">
-            <b>Downloads</b> <br> ${downloads}
+            <b>Downloads</b> 
+               ${downloads}
           </p>
         </div>
       </div>
